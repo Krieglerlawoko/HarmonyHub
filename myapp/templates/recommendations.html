@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Recommendations</h2>
+    <ul>
+        {% for song in recommended_songs %}
+        <li>{{ song.title }} - {{ song.artist }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
