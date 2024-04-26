@@ -1,22 +1,14 @@
-<!-- register.html -->
-
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Recommendations{% endblock %}
 
 {% block content %}
-<div class="register-container">
-    <h2>Register</h2>
-    <form method="post" action="{{ url_for('register') }}">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Register</button>
-    </form>
+<div class="container">
+    <h2>Recommendations</h2>
+    <ul>
+        {% for song in recommended_songs %}
+        <li>{{ song.title }} by {{ song.artist }}</li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

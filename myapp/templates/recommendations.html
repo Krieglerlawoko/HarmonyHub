@@ -7,8 +7,9 @@
     <h2>Recommendations</h2>
     <ul>
         {% for song in recommended_songs %}
-        <li>{{ song.title }} - {{ song.artist }}</li>
+        <li>{{ song.title }} by {{ song.artist }}</li>
         {% endfor %}
     </ul>
 </div>
 {% endblock %}
+
