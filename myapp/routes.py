@@ -4,7 +4,6 @@ from app import app, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import app, db  # Import the app and db instances
 from models import User
-from flask_uploads import UploadNotAllowed
 from flask import send_from_directory
 
 # Import models to access database tables
@@ -91,21 +90,7 @@ def logout():
     flash('Logged out successfully!', 'success')
     return redirect(url_for('index'))
 
-@app.route('/upload', methods=['GET', 'POST'])
-def upload():
-    if request.method == 'POST' and 'file' in request.files:
-        try:
-            filename = uploads.save(request.files['file'])
-            return 'File uploaded successfully: {}'.format(filename)
-        except UploadNotAllowed:
-            return 'File upload not allowed!'
-    return render_template('upload.html')
-
 @app.route('/download', methods=['GET'])
 def download():
     filenames = os.listdir(app.config['UPLOAD_FOLDER'])
     return render_template('download.html', filenames=filenames)
-
-@app.route('/download/<filename>')
-def download_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)

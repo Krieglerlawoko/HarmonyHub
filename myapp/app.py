@@ -3,19 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-import secrets
+from utils import generate_token
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = secrets.token_hex(16)
-pp.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['ALLOWED_EXTENSIONS'] = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.secret_key = generate_token() 
 
 
 db = SQLAlchemy(app)
-uploads = UploadSet('uploads', IMAGES)
-configure_uploads(app, uploads)
 
 # Initialize Flask-Login
 login_manager = LoginManager()
