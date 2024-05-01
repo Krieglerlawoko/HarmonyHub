@@ -1,13 +1,19 @@
 from app import db
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
+    is_active = db.Column(db.Boolean, default=True)  # Define the is_active attribute
 
     def __repr__(self):
-        return f'<Post {self.username}>'
+        return f"User('{self.username}', '{self.email}')"
+
+
 class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)

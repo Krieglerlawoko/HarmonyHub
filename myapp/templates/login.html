@@ -15,13 +15,13 @@ Login - HarmonyHub
         </ul>
     {% endif %}
 {% endwith %}
-<form action="{{ url_for('login') }}" method="POST">
+<form action="{{ url_for('login') }}" method="POST" class="login-form">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br><br>
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br><br>
 
-    <input type="submit" value="Login">
+    <input type="submit" value="Login" class="login-button">
 </form>
 {% endblock %}

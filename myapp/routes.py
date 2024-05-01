@@ -1,14 +1,11 @@
 import os
 from flask import render_template, request, redirect, url_for, flash, jsonify
-from flask_login import login_user, logout_user, login_required, current_user
-from app import app, login_manager
+from flask_login import login_user, logout_user, current_user, login_required
+from app import app, login_manager, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db  # Import the app and db instances
 from models import User
-from flask import send_from_directory
-from flask import current_app
-from flask import session
-from flask import jsonify
+from flask import send_from_directory, current_app, session, jsonify
+from sqlalchemy import func
 
 # Import models to access database tables
 from models import User, Song
@@ -94,13 +91,6 @@ def registration_success():
     return render_template('registration_success.html')
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    flash('Logged out successfully!', 'success')
-    return redirect(url_for('index'))
-
 @app.route('/download', methods=['GET'])
 def download():
     upload_folder = current_app.config.get('UPLOAD_FOLDER')
@@ -114,35 +104,44 @@ def download():
     filenames = os.listdir('download')
     return render_template('download.html', filenames='download')
 
+
 @app.route('/dashboard')
 def dashboard():
-    if 'username' in session:  # Check if user is logged in
+    if current_user.is_authenticated:  # Check if user is logged in
         # Fetch all songs from the database
         songs = Song.query.all()
         # Pass the fetched data to the template for rendering
-        return render_template('dashboard.html', username=session['username'], songs=songs)
+        return render_template('dashboard.html', username=current_user.username, songs=songs)
     else:
-        return redirect(url_for('login'))
+        return render_template('limited_dashboard.html')
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
 
         # Retrieve the user from the database based on the provided username
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter(func.lower(User.username) == func.lower(username)).first()
 
-        if user:
-            # Check if the provided password matches the hashed password stored in the database
-            if check_password_hash(user.password, password):
-                # Password is correct, log in the user
-                session['username'] = username  # Set session variable upon successful login
-                return redirect(url_for('dashboard'))
-            else:
-                flash('Invalid password!', 'error')
+        if user and check_password_hash(user.password, password):
+            # Password is correct, log in the user
+            login_user(user)  # Log in the user
+            session['username'] = user.username  # Set session variable upon successful login
+            return redirect(url_for('dashboard'))
         else:
-            flash('Invalid username!', 'error')
+            flash('Invalid username or password!', 'error')
 
     # Render the login form template for GET requests
     return render_template('login.html')
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+        flash('Logged out successfully!', 'success')
+    else:
+        flash('Sorry, you are not logged in.', 'error')
+    return redirect(url_for('login'))  # Redirect to the home page
