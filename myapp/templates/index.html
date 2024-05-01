@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>HarmonyHub</h1>
-    <ul>
-        {% for filename in filenames %}
-        <li><a href="{{ url_for('/', filename=filename) }}">{{ filename }}</a></li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
 
-
-{% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
+{% block title %}
+Home - HarmonyHub
+{% endblock %}
 
 {% block content %}
+<h1>HarmonyHub</h1>
+<ul>
+    {% for filename in filenames %}
+    <li><a href="{{ url_for('download', filename=filename) }}">{{ filename }}</a></li>
+    {% endfor %}
+</ul>
+
 <div class="container">
     <h2>Welcome to HarmonyHub</h2>
     <p>Explore the world of music with our app.</p>

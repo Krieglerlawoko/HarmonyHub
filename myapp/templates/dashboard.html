@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <!-- Include any CSS files or stylesheets here -->
-</head>
-<body>
-    <h1>Welcome to the Dashboard!</h1>
-    <!-- Add any content you want to display on the dashboard here -->
+{% extends "base.html" %}
 
-    <!-- Python code to display welcome message with login name -->
-    {% if username %}
-        <p>Welcome, {{ username }}!</p>
-    {% endif %}
+{% block title %}
+Dashboard - HarmonyHub
+{% endblock %}
 
-    <!-- Option to route to /api/recommendations -->
-    <form action="/api/recommendations" method="GET">
-        <button type="submit">Get Recommendations</button>
-    </form>
-</body>
-</html>
+{% block content %}
+<h1>Welcome to the Dashboard!</h1>
+<!-- Add any content you want to display on the dashboard here -->
+
+<!-- Python code to display welcome message with login name -->
+{% if username %}
+    <p>Welcome, {{ username }}!</p>
+{% endif %}
+
+<!-- Option to route to /api/recommendations -->
+<form action="/api/recommendations" method="GET">
+    <button type="submit">Get Recommendations</button>
+</form>
+{% endblock %}
