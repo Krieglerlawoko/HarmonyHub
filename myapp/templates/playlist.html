@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+Spotify Playlist Dashboard
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+
+<h1>Spotify Playlist Dashboard</h1>
+<div id="playlist"></div>
+
+<!-- Add a section to display songs from the database -->
+<h2>Songs from Database</h2>
+<ul>
+  {% for song in songs %}
+  <li>{{ song.title }} - {{ song.artist }}</li>
+  {% endfor %}
+</ul>
+
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>
+    fetch('https://api.spotify.com/v1/playlists/{{ playlist_id }}/tracks', {
+        headers: {
+            'Authorization': 'Bearer {{ access_token }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const playlistDiv = document.getElementById('playlist');
+        data.items.forEach(item => {
+            const track = item.track;
+            const trackElement = document.createElement('div');
+            trackElement.innerHTML = `<p>{{ track.name }} - {{ track.artists[0].name }}</p>`;
+            playlistDiv.appendChild(trackElement);
+        });
+    })
+    .catch(error => console.error('Error fetching playlist:', error));
+</script>
+{% endblock %}

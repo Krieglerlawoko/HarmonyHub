@@ -1,20 +1,44 @@
 {% extends "base.html" %}
 
 {% block title %}
-Dashboard - HarmonyHub
+{% if playlist_title %}
+    Spotify Playlist: {{ playlist_title }}
+{% else %}
+    Dashboard - HarmonyHub
+{% endif %}
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to the Dashboard!</h1>
-<!-- Add any content you want to display on the dashboard here -->
+{{ super() }}
 
-<!-- Python code to display welcome message with login name -->
-{% if username %}
-    <p>Welcome, {{ username }}!</p>
+{% if show_playlist %}
+    <h1>Spotify Playlist: {{ playlist_title }}</h1>
+    <div id="playlist"></div>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        // JavaScript code to fetch and display playlist data
+    </script>
+{% else %}
+    <h1>Welcome to the Dashboard!</h1>
+    <!-- Add any content you want to display on the dashboard here -->
+
+    <!-- Python code to display welcome message with login name -->
+    {% if username %}
+        <p>Welcome, {{ username }}!</p>
+    {% endif %}
+
+    <!-- Option to route to /api/recommendations -->
+    <form action="/api/recommendations" method="GET">
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    <!-- Section to display artist names and song titles from the database -->
+    <h2>Songs from Database</h2>
+    <ul>
+        {% for song in songs %}
+            <li>{{ song.title }} - {{ song.artist }}</li>
+        {% endfor %}
+    </ul>
 {% endif %}
-
-<!-- Option to route to /api/recommendations -->
-<form action="/api/recommendations" method="GET">
-    <button type="submit">Get Recommendations</button>
-</form>
 {% endblock %}
