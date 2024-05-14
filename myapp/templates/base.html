@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background: url({{ url_for('static', filename='images/Harmony.jpg') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 
 <nav>
     <ul>
         <li><a href="{{ url_for('index') }}">Home</a></li>
-	<li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
         <li><a href="{{ url_for('login') }}">Login</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('download') }}">Download</a></li>
-	<li><a href="{{ url_for('upload_song') }}">Upload</a></li>
+        <li><a href="{{ url_for('upload_song') }}">Upload</a></li>
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
     </ul>
 </nav>
@@ -27,7 +28,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2024 HarmonyHub. All rights reserved.</p>
+    <p>© 2024 HarmonyHub. All rights reserved.</p>
 </footer>
 
 </body>
