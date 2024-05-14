@@ -1,3 +1,4 @@
+jjjjjjjjjjjjjjj
 {% extends "base.html" %}
 
 {% block title %}
@@ -29,16 +30,26 @@
     {% endif %}
 
     <!-- Option to route to /api/recommendations -->
-    <form action="/api/recommendations" method="GET">
-        <button type="submit">Get Recommendations</button>
+    <form class="newTopicForm" action="/api/recommendations" method="GET">
+        <button type="submit" class="btn btn-primary">Get Recommendations</button>
     </form>
 
     <!-- Section to display artist names and song titles from the database -->
     <h2>Songs from Database</h2>
-    <ul>
-        {% for song in songs %}
-            <li>{{ song.title }} - {{ song.artist }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="row">
+            {% for song in songs %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ song.album_art_url }}" class="card-img-top" alt="Album Art">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ song.title }}</h5>
+                        <p class="card-text">{{ song.artist }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endif %}
 {% endblock %}

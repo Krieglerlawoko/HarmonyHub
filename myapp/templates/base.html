@@ -21,10 +21,14 @@
     </ul>
 </nav>
 
-<div class="container">
-    {% block content %}
-    <!-- Main content of the page -->
-    {% endblock %}
+<div class="container" class="content">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8" class=".main-content">
+            {% block content %}
+            <!-- Main content of the page -->
+            {% endblock %}
+        </div>
+    </div>
 </div>
 
 <footer>
