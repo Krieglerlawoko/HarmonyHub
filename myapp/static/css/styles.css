@@ -46,7 +46,7 @@ button:hover {
 
 /* Navigation bar */
 nav {
-    background: linear-gradient(to right, #ff8c00, #ff4e00);
+    background: linear-gradient(to left, #553c9a, #b393d3);
     padding: 10px 0; 
 }
 
@@ -125,33 +125,22 @@ nav ul li.dropdown:hover .dropdown-content {
     flex: 1;
 }
 
-/* Header Styles */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
 
 h1 {
-    font-size: 70px;
-    font-weight: 600;
-    background-image: linear-gradient(to left, #553c9a, #b393d3);
+    font-size: 17em;
+    font-weight: 900;
+    background-image: linear-gradient(to left, #7d6bb5, #d1bfe6);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
     font-family: 'Roboto', sans-serif;
-    color: #333;
     margin-top: 360vh;
+    -webkit-text-fill-color: transparent;
     text-align: center; /* Center the heading */
 }
 
 h2 {
-    color: #333;
+    background-image: linear-gradient(to left, #553c9a, #b393d3);
     text-align: center; /* Center the heading */
 }
 

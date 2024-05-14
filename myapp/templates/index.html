@@ -15,11 +15,13 @@ Home - HarmonyHub
 <div class="container">
     <h2>Welcome to HarmonyHub</h2>
     <p>Explore the world of music with our app.</p>
-    <p>login for a better experience!</p>
+    <p>Login for a better experience!</p>
     {% for song in songs %}
         <p>{{ song.title }} - {{ song.artist }}</p>
     {% endfor %}
-    <button onclick="location.href='{{ url_for('login') }}'" type="button"  class="centerButton">Login</button>
+    <div class="d-flex justify-content-center">
+        <button onclick="location.href='{{ url_for('login') }}'" type="button" class="btn btn-primary mt-4 mb-4">Login</button>
+    </div>
 </div>
 {% endblock %}
 
