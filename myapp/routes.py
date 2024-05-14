@@ -11,7 +11,8 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, 
 from sqlalchemy.orm import sessionmaker
 from app import app, db  # Remove
 from sqlalchemy.exc import IntegrityError
-
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -30,20 +31,35 @@ def index():
     recommendations = get_recommendations()
     return render_template('index.html', users=users, recommendations=recommendations)
 
-# New API endpoint for music recommendations
+from flask import jsonify, request
+# Initialize the Spotipy client with your Spotify credentials
+client_credentials_manager = SpotifyClientCredentials(client_id='3e315e99365a46118e423cf641bfc4c3', client_secret='44ad8667502b4adeb460d55e2107781e')
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+
+def fetch_recommendations(genre):
+    results = sp.search(q='genre:' + genre, type='track', limit=9)
+    recommendations = []
+    for track in results['tracks']['items']:
+        recommendations.append({
+            'song_name': track['name'],
+            'artist_title': track['artists'][0]['name'],
+            'cover_art_url': track['album']['images'][0]['url']
+        })
+    return recommendations
+
 @app.route('/api/recommendations', methods=['GET'])
 def get_recommendations():
     genre = request.args.get('genre')
     if genre:
-        recommendations = generate_recommendations(genre)
-        return jsonify({'recommendations': recommendations})
+        try:
+            recommendations = fetch_recommendations(genre)
+            return render_template('recommendations.html', recommended_songs=recommendations)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
     else:
         return jsonify({'error': 'Genre parameter is missing'}), 400
 
-def generate_recommendations(genre):
-    recommended_songs = Song.query.filter_by(genre=genre).limit(5).all()
-    recommendations = [{'title': song.title, 'artist': song.artist} for song in recommended_songs]
-    return recommendations
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -88,13 +104,26 @@ def download():
 from flask_login import current_user
 
 @app.route('/dashboard')
-@login_required
 def dashboard():
+    # Check if the user is logged in
+    if not current_user.is_authenticated:
+        return redirect(url_for('limited_dashboard'))
+
     # Fetch all songs from the database
     songs = Song.query.all()
     # Pass the fetched data to the template for rendering
     return render_template('dashboard.html', username=current_user.username, songs=songs)
-    #return render_template('dashboard.html', username=current_user.username, songs=songs, playlist_title="Your Playlist Title", show_playlist=True)
+
+
+@app.route('/limited_dashboard')
+def limited_dashboard():
+    # Assume you have a function or method to fetch song titles and artist names from your database
+    songs =  Song.query.all() 
+
+
+    return render_template('limited_dashboard.html', songs=songs,)
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -118,11 +147,15 @@ def login():
     return render_template('login.html')
 
 @app.route('/logout', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def logout():
-    logout_user()
-    flash('Logged out successfully!', 'success')
+    if current_user.is_authenticated:
+        logout_user()
+        flash('Logged out successfully!', 'success')
+    else:
+        flash('You are not logged in.', 'error')
     return redirect(url_for('login'))
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required

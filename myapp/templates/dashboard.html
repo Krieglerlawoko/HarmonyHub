@@ -28,8 +28,17 @@
         <p>Welcome, {{ username }}!</p>
     {% endif %}
 
-    <!-- Option to route to /api/recommendations -->
-    <form class="newTopicForm" action="/api/recommendations" method="GET">
+    <!-- Form to prompt user for genre and redirect to recommendations route -->
+    <form class="newTopicForm" action="{{ url_for('get_recommendations') }}" method="GET">
+        <div class="form-group">
+            <label for="genre">Select Genre:</label>
+            <select class="form-control" id="genre" name="genre">
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="hip-hop">Hip Hop</option>
+                <!-- Add more genre options as needed -->
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Get Recommendations</button>
     </form>
 

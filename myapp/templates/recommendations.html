@@ -3,13 +3,56 @@
 {% block title %}Recommendations{% endblock %}
 
 {% block content %}
+<style>
+    body {
+        background-image: url("{{ url_for('static', filename='images/Harmony.jpg') }}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+    }
+    .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .form-group label,
+    .form-group select,
+    .btn {
+        color: #000;
+    }
+    .card {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+</style>
+
 <div class="container">
     <h2>Recommendations</h2>
-    <ul>
+    <form action="{{ url_for('get_recommendations') }}" method="GET">
+        <div class="form-group">
+            <label for="genre">Select Genre:</label>
+            <select class="form-control" id="genre" name="genre">
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="hip-hop">Hip Hop</option>
+                <!-- Add more genre options as needed -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Recommendations</button>
+    </form>
+
+    <div class="row mt-4">
         {% for song in recommended_songs %}
-        <li>{{ song.title }} by {{ song.artist }}</li>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ song.cover_art_url }}" class="card-img-top" alt="Cover Art">
+                <div class="card-body">
+                    <h5 class="card-title">{{ song.song_name }}</h5>
+                    <p class="card-text">by {{ song.artist_title }}</p>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
-

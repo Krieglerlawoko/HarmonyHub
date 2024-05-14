@@ -1,13 +1,41 @@
 {% extends "base.html" %}
 
 {% block title %}
-Limited Dashboard - HarmonyHub
+    {% if playlist_title %}
+        Spotify Playlist: {{ playlist_title }}
+    {% else %}
+        Dashboard - HarmonyHub
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to the Limited Dashboard</h1>
-<p>Please log in to access the full dashboard.</p>
-<form action="{{ url_for('login') }}" method="GET">
-    <button type="submit">Login</button>
-</form>
+    {{ super() }}
+
+    {% if not show_playlist %}
+        <h1>Welcome to the Limited Dashboard</h1>
+        <p>Please log in to access the full dashboard.</p>
+
+        <!-- Login button to redirect to login page -->
+        <form class="newTopicForm" action="{{ url_for('login') }}" method="GET">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <!-- Section to display artist names and song titles from the database -->
+        <h2>Songs from Database</h2>
+        <div class="container">
+            <div class="row">
+                {% for song in songs %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img src="{{ song.album_art_url }}" class="card-img-top" alt="Album Art">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ song.title }}</h5>
+                                <p class="card-text">{{ song.artist }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
