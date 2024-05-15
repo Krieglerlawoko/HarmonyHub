@@ -9,13 +9,15 @@
 
     <!-- New Download Form -->
     <form action="{{ url_for('download_song') }}" method="POST">
-        <label for="file_id">Select song to download:</label>
-        <select name="file_id" id="file_id">
-            {% for song in songs %}
-            <option value="{{ song.id }}">{{ song.title }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Download</button>
+        <div class="form-group">
+            <label for="file_id">Select song to download:</label>
+            <select name="file_id" id="file_id" class="form-control">
+                {% for song in songs %}
+                <option value="{{ song.id }}">'{{ song.title }}' by {{ song.artist }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-1">Download</button>
     </form>
 </div>
 {% endblock %}

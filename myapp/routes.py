@@ -17,8 +17,11 @@ from spotipy.oauth2 import SpotifyClientCredentials
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    flash('Unauthorized', 'error')
+    return redirect(url_for('login'))
 
-# Routes
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -92,6 +95,7 @@ def registration_success():
 from flask import send_file, abort
 
 @app.route('/download', methods=['GET', 'POST'])
+@login_required
 def download_song():
     if request.method == 'POST':
         file_id = request.form['file_id']
@@ -99,7 +103,7 @@ def download_song():
         song = Song.query.get(file_id)
         if song:
             # Send the song file as an attachment for download
-            return send_file(song.file_data, as_attachment=True, attachment_filename=song.title + '.mp3')
+            return send_file(song.file_data, as_attachment=True, download_name=song.title + '.mp3')
         else:
             # Song not found, return a 404 error
             abort(404)
@@ -153,7 +157,7 @@ def login():
     return render_template('login.html')
 
 @app.route('/logout', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def logout():
     if current_user.is_authenticated:
         logout_user()

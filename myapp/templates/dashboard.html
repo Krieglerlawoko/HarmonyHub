@@ -30,7 +30,7 @@
 
     <!-- Form to prompt user for genre and redirect to recommendations route -->
     <form class="newTopicForm" action="{{ url_for('get_recommendations') }}" method="GET">
-        <div class="form-group">
+        <div class="form-group" style="margin-right: 10px;">
             <label for="genre">Select Genre:</label>
             <select class="form-control" id="genre" name="genre">
                 <option value="pop">Pop</option>
@@ -52,7 +52,7 @@
                     <img src="{{ song.album_art_url }}" class="card-img-top" alt="Album Art">
                     <div class="card-body">
                         <h5 class="card-title">{{ song.title }}</h5>
-                        <p class="card-text">{{ song.artist }}</p>
+                        <p class="card-text" style="color: black;">{{ song.artist }}</p>
                     </div>
                 </div>
             </div>
