@@ -88,20 +88,26 @@ def register():
 def registration_success():
     return render_template('registration_success.html')
 
-@app.route('/download', methods=['GET'])
-def download():
-    upload_folder = current_app.config.get('UPLOAD_FOLDER')
-    if not upload_folder:
-        return 'UPLOAD_FOLDER is not configured.', 500
 
-    download_folder = os.path.join(upload_folder, 'download')
-    if not os.path.exists(download_folder):
-        return 'Download folder does not exist.', 500
+from flask import send_file, abort
 
-    filenames = os.listdir(download_folder)
-    return render_template('download.html', filenames=filenames)
+@app.route('/download', methods=['GET', 'POST'])
+def download_song():
+    if request.method == 'POST':
+        file_id = request.form['file_id']
+        # Retrieve the song from the database based on the file_id
+        song = Song.query.get(file_id)
+        if song:
+            # Send the song file as an attachment for download
+            return send_file(song.file_data, as_attachment=True, attachment_filename=song.title + '.mp3')
+        else:
+            # Song not found, return a 404 error
+            abort(404)
+    else:
+        # For GET requests, fetch all songs for display on the download page
+        songs = Song.query.all()
+        return render_template('download.html', songs=songs)
 
-from flask_login import current_user
 
 @app.route('/dashboard')
 def dashboard():
@@ -118,7 +124,7 @@ def dashboard():
 @app.route('/limited_dashboard')
 def limited_dashboard():
     # Assume you have a function or method to fetch song titles and artist names from your database
-    songs =  Song.query.all() 
+    songs =  Song.query.all()
 
 
     return render_template('limited_dashboard.html', songs=songs,)
@@ -181,6 +187,6 @@ def upload_song():
             return redirect(url_for('dashboard'))
         else:
             flash('No file selected!', 'error')
-            return redirect(request.url) 
+            return redirect(request.url)
 
     return render_template('upload.html')
