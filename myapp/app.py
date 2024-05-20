@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uaaslaf3m4bke1:p62eb677fbf39
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 
-# Initialize extensions
+# Initialize extensionss
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
