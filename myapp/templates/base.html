@@ -2,28 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}HarmonyHub{% endblock %}</title>
+    <!-- External CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/Harmony.jpg') }}");
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
 </head>
-<body style="background: url({{ url_for('static', filename='images/Harmony.jpg') }}) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+<body>
 
-<nav>
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-        <li><a href="{{ url_for('download_song') }}">Download</a></li>
-        <li><a href="{{ url_for('upload_song') }}">Upload</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-    </ul>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-0">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">HarmonyHub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('download_song') }}">Download</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('upload_song') }}">Upload</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
-<div class="container" class="content">
+<!-- Main Content Area -->
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8" class=".main-content">
+        <div class="col-12 col-md-8">
+            <!-- Content Block -->
             {% block content %}
             <!-- Main content of the page -->
             {% endblock %}
@@ -31,9 +54,16 @@
     </div>
 </div>
 
-<footer>
-    <p>© 2024 HarmonyHub. All rights reserved.</p>
+<!-- Footer -->
+<footer class="footer py-0"> <!-- Adjust margin-top as needed -->
+    <div class="container">
+        <p class="mb-0">© 2024 HarmonyHub. All rights reserved.</p>
+    </div>
 </footer>
 
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

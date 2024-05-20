@@ -6,28 +6,46 @@ Login - HarmonyHub
 
 {% block content %}
 <div class="container">
-    <h1>Login</h1>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="alert alert-warning">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <!-- Login Form -->
+            <div class="card shadow mt-5">
+                <div class="card-body">
+
+                    <!-- Login Header -->
+                    <h1 class="display-4 text-center mb-4">Login to HarmonyHub</h1>
+
+                    <!-- Flash Messages -->
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-warning">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+
+                    <!-- Login Form -->
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+                    </form>
+
+                </div>
             </div>
-        {% endif %}
-    {% endwith %}
-    <form action="{{ url_for('login') }}" method="POST" class="login-form">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" class="form-control" required>
-        </div>
 
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-control" required>
         </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    </div>
 </div>
 {% endblock %}

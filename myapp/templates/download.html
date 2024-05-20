@@ -4,20 +4,27 @@
 
 {% block content %}
 <div class="container">
-    <h1>Download Page</h1>
-    <p>This is the download page.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-    <!-- New Download Form -->
-    <form action="{{ url_for('download_song') }}" method="POST">
-        <div class="form-group">
-            <label for="file_id">Select song to download:</label>
-            <select name="file_id" id="file_id" class="form-control">
-                {% for song in songs %}
-                <option value="{{ song.id }}">'{{ song.title }}' by {{ song.artist }}</option>
-                {% endfor %}
-            </select>
+            <!-- Page Header -->
+            <h1 class="display-4 text-center mb-4">Download Your Favorite Songs</h1>
+            <p class="lead text-center">Select a song from the list below to download it.</p>
+
+            <!-- Download Form -->
+            <form action="{{ url_for('download_song') }}" method="POST">
+                <div class="form-group">
+                    <label for="file_id">Choose a Song:</label>
+                    <select name="file_id" id="file_id" class="form-control">
+                        {% for song in songs %}
+                        <option value="{{ song.id }}">{{ song.title }} - {{ song.artist }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Download</button>
+            </form>
+
         </div>
-        <button type="submit" class="btn btn-primary mt-1">Download</button>
-    </form>
+    </div>
 </div>
 {% endblock %}
