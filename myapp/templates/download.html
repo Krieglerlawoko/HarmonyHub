@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Download Page{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <!-- Page Header -->
+            <h1 class="display-4 text-center mb-4">Download Your Favorite Songs</h1>
+            <p class="lead text-center">Select a song from the list below to download it.</p>
+
+            <!-- Download Form -->
+            <form action="{{ url_for('download_song') }}" method="POST">
+                <div class="form-group">
+                    <label for="file_id">Choose a Song:</label>
+                    <select name="file_id" id="file_id" class="form-control">
+                        {% for song in songs %}
+                        <option value="{{ song.id }}">{{ song.title }} - {{ song.artist }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Download</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+Upload Song
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Upload Song</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" name="artist" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="file">Choose a file:</label>
+            <input type="file" id="file" name="file" class="form-control-file" required>
+        </div>
+
+        <!-- New field for uploading cover art -->
+        <div class="form-group">
+            <label for="cover_art">Choose cover art:</label>
+            <input type="file" id="cover_art" name="cover_art" class="form-control-file">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+{% endblock %}

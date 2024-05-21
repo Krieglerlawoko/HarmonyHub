@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+Registration Success - HarmonyHub
+{% endblock %}
+
+{% block content %}
+<h1>Registration Successful</h1>
+<p>Congratulations! Your registration was successful.</p>
+<p>You will be redirected shortly.</p>
+
+<script>
+    // Redirect to login page after 3 seconds
+    setTimeout(function() {
+        window.location.href = "{{ url_for('login') }}";
+    }, 3000);
+</script>
+{% endblock %}
