@@ -8,7 +8,7 @@ import secrets
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-# Initialize the app1
+# Initialize the app11
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
