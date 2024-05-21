@@ -7,6 +7,7 @@ from sqlalchemy import func
 import secrets
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import os
 
 # Initialize the app11
 app = Flask(__name__)

@@ -1,1 +1,1 @@
-web: python app.pddiy
+web: gunicorn app:app
