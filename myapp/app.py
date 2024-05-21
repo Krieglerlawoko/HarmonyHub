@@ -10,7 +10,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 # Initialize the app1
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uaaslaf3m4bke1:p62eb677fbf39924e7da76b360403cdc0bcbd9b142160a4819756565246947f4a@ec2-34-231-218-166.compute-1.amazonaws.com:5432/dllglul3siku6'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ufzrprrrrtzbux:64bdb702b5a6d2421cec8d5e3d56963bfa137279848adda27450cc350868b02a@ec2-44-215-176-210.compute-1.amazonaws.com:5432/d59o48ec84oprm'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 
