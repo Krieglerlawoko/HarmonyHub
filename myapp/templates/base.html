@@ -17,6 +17,11 @@
             background-image: url("{{ url_for('static', filename='images/Harmony.jpg') }}");
             background-size: cover;
             font-family: 'Roboto', sans-serif;
+            padding-bottom: 100px; /* Adjust according to the height of the footer */
+        }
+        /* Adjust footer background color to be slightly transparent */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7); /* Adjust alpha value for transparency */
         }
     </style>
 </head>
@@ -55,7 +60,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer py-0"> <!-- Adjust margin-top as needed -->
+<footer class="footer py-3"> <!-- Adjust margin-top as needed -->
     <div class="container">
         <p class="mb-0">© 2024 HarmonyHub. All rights reserved.</p>
     </div>

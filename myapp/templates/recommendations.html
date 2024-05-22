@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}Recommendations{% endblock %}
+{% block title %}
+Recommendations
+{% endblock %}
 
 {% block content %}
 <style>
@@ -23,6 +25,10 @@
     }
     .card {
         background-color: rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease-in-out;
+    }
+    .card:hover {
+        transform: scale(1.05);
     }
 </style>
 

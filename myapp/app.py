@@ -8,15 +8,19 @@ import secrets
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
+from flask_migrate import Migrate
 
 # Initialize the app11
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your-database-file.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://sievrjxxscwcvs:0c6714283c9073f74b792315a9418f939bfc16fa76d226d20898975ee6aa3d81@ec2-44-194-102-142.compute-1.amazonaws.com:5432/d9neel4gp1m6gq'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 
 # Initialize extensionss2
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
@@ -36,9 +40,9 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(500), unique=True, nullable=False)
+    password = db.Column(db.String(500), nullable=False)
+    email = db.Column(db.String(500), unique=True, nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     def get_id(self):
         return self.id
@@ -52,10 +56,18 @@ class Song(db.Model):
     artist = db.Column(db.String(100))
     genre = db.Column(db.String(50))
     file_data = db.Column(db.LargeBinary)
-    cover_art_data = db.Column(db.LargeBinary)
+#    cover_art_data = db.Column(db.LargeBinary)
+    cover_art_data = db.Column(db.LargeBinary, nullable=True)
 
     def __repr__(self):
         return f'<Song {self.title} by {self.artist}>'
+
+    @property
+    def cover_art_url(self):
+        if self.cover_art_data:
+            return url_for('cover_art', song_id=self.id)
+        else:
+            return url_for('static', filename='default_cover_art.jpg')  # Use a default image if cover art is not available
 
 class UserPreference(db.Model):
     __tablename__ = 'user_preference'
@@ -180,7 +192,7 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/upload', methods=['GET', 'POST'])
-@login_required
+# @login_required  # Uncomment this line if using Flask-Login for authentication
 def upload_song():
     if request.method == 'POST':
         title = request.form['title']
@@ -188,6 +200,7 @@ def upload_song():
         genre = request.form['genre']
         file = request.files['file']
         cover_art = request.files['cover_art']
+        
         if file and cover_art:
             try:
                 new_song = Song(
@@ -207,7 +220,17 @@ def upload_song():
         else:
             flash('File and cover art are required!', 'error')
             return redirect(request.url)
+    
     return render_template('upload.html')
+
+@app.route('/cover_art/<int:song_id>')
+def cover_art(song_id):
+    song = Song.query.get_or_404(song_id)
+    if song.cover_art_data:
+        return send_file(BytesIO(song.cover_art_data), mimetype='image/jpeg')
+    else:
+        flash('No cover art available for this song', 'error')
+        return redirect(url_for('dashboard'))
 
 @app.route('/registration_success')
 def registration_success():

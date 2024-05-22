@@ -11,62 +11,56 @@
 {% block content %}
 {{ super() }}
 
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-
-            {% if show_playlist %}
-            <!-- Display Spotify Playlist -->
-            <h1 class="display-4 text-center mb-4">Spotify Playlist: {{ playlist_title }}</h1>
-            <div id="playlist"></div>
-            <script src="https://sdk.scdn.co/spotify-player.js"></script>
-            <script>
-                // JavaScript code to fetch and display playlist data
-            </script>
-            {% else %}
-            <!-- Welcome Message and Genre Selection Form -->
-            <div class="text-center">
-                <h1 class="display-4 mb-4">Welcome to HarmonyHub Dashboard!</h1>
-                <!-- Add any content you want to display on the dashboard here -->
-                <!-- Python code to display welcome message with login name -->
-                {% if username %}
-                <p class="lead">Welcome, <strong>{{ username }}</strong>!</p>
-                {% endif %}
-            </div>
-
-            <!-- Genre Selection Form -->
-            <form class="form-inline justify-content-center mt-4" action="{{ url_for('get_recommendations') }}" method="GET">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="genre" class="sr-only">Select Genre:</label>
-                    <select class="form-control" id="genre" name="genre">
-                        <option value="pop">Pop</option>
-                        <option value="rock">Rock</option>
-                        <option value="hip-hop">Hip Hop</option>
-                        <!-- Add more genre options as needed -->
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary mb-2">Get Recommendations</button>
-            </form>
-
-            <!-- Section to display artist names and song titles from the database -->
-            <h2 class="display-5 text-center mt-5 mb-3">Songs from Database</h2>
-            <div class="row justify-content-center">
-                {% for song in songs %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow">
-                        <img src="{{ song.album_art_url }}" class="card-img-top" alt="Album Art">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ song.title }}</h5>
-                            <p class="card-text text-muted">{{ song.artist }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-
-        </div>
+<div class="container">
+    {% if show_playlist %}
+    <!-- Display Spotify Playlist -->
+    <h1 class="display-4 text-center mb-4">Spotify Playlist: {{ playlist_title }}</h1>
+    <div id="playlist"></div>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        // JavaScript code to fetch and display playlist data
+    </script>
+    {% else %}
+    <!-- Welcome Message and Genre Selection Form -->
+    <div class="text-center">
+        <h1 class="display-4 mb-4">Welcome to HarmonyHub Dashboard!</h1>
+        <!-- Add any content you want to display on the dashboard here -->
+        <!-- Python code to display welcome message with login name -->
+        {% if username %}
+        <p class="lead">Welcome, <strong>{{ username }}</strong>!</p>
+        {% endif %}
     </div>
+
+    <!-- Genre Selection Form -->
+    <form class="form-inline justify-content-center mt-4" action="{{ url_for('get_recommendations') }}" method="GET">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="genre" class="sr-only">Select Genre:</label>
+            <select class="form-control" id="genre" name="genre">
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="hip-hop">Hip Hop</option>
+                <!-- Add more genre options as needed -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Get Recommendations</button>
+    </form>
+
+    <!-- Section to display artist names and song titles from the database -->
+    <h2 class="display-5 text-center mt-5 mb-3">Songs from Database</h2>
+    <div class="row justify-content-center">
+        {% for song in songs %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow song-card">
+                <img src="{{ song.cover_art_url }}" class="card-img-top" alt="Album Art">
+                <div class="card-body">
+                    <h5 class="card-title">{{ song.title }}</h5>
+                    <p class="card-text text-muted">{{ song.artist }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}

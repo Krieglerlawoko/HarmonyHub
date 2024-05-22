@@ -1,0 +1,207 @@
+[33mcommit 4a89bba65069be0af34df122e0a7c4cde68b8ca2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 2c47a6c 67ded43
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 14:14:16 2024 +0300
+
+    Merged remote main into local main
+
+[33mcommit 2c47a6c27c51c90896ec9ed8bd97ef7be3e75a37[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 14:11:23 2024 +0300
+
+    new
+
+[33mcommit 0398f8f117286e133005f136059fe4ddac02d07a[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 13:45:04 2024 +0300
+
+    tweak 2
+
+[33mcommit a99eeeeb349c44f7159c6b7f7cd467836faea6b7[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 13:32:28 2024 +0300
+
+    Specify buildpacks for Heroku deployment
+
+[33mcommit 5efa5d82ee0e282ea681f81fe6fad40cdf68bd6d[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 13:17:29 2024 +0300
+
+    Ensure buildpack compatibility
+
+[33mcommit 088a7c6e2ca959ad97ce61b8e6fd08359e98f233[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 13:01:13 2024 +0300
+
+    Fix buildpack issue
+
+[33mcommit cc7c67719920f3c667e2e10c9974f80e161ef93a[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 12:55:56 2024 +0300
+
+    Initial commit
+
+[33mcommit 67ded4354798f157a00c45441d6f67b37a126fad[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 12:42:04 2024 +0300
+
+    tweak
+
+[33mcommit c533974442cf73890ac5660aa1cc7ce24d261a9e[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 21 11:29:41 2024 +0300
+
+    new
+
+[33mcommit 8e44a85d8b7971aff3c598ec5956d6801d6dc808[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Mon May 20 23:06:18 2024 +0300
+
+    n
+
+[33mcommit 7e12a13d1d88934c5f8d612c66470853561a3e5c[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Mon May 20 22:52:54 2024 +0300
+
+    change
+
+[33mcommit da025c0a5e35ca3af3e09eeb12a750a2ab0acfb1[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Mon May 20 22:47:42 2024 +0300
+
+    new change
+
+[33mcommit bf9d072dac5bab5559a8d6e7883c6b83a455bc68[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Mon May 20 22:37:08 2024 +0300
+
+    new
+
+[33mcommit 55d18408b4ce90bf385251ef60c16c925aa63754[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Mon May 20 22:20:19 2024 +0300
+
+    tweak
+
+[33mcommit 9f665da0e18e6282e41e6e8b33d8c24b20498b63[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Wed May 15 12:49:01 2024 +0300
+
+    download page
+
+[33mcommit 0b4e4778c7078cfac192a016bd509353d5fc3883[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Wed May 15 11:24:32 2024 +0300
+
+    new
+
+[33mcommit 22e7d9a93de3d3d8203a2495a79b24ff09272f5f[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 14 19:57:41 2024 +0300
+
+    ne
+
+[33mcommit a1553abdc986ddbc941716e11b2d227113dc307a[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 14 16:45:54 2024 +0300
+
+    new
+
+[33mcommit 43187fc5ca4d21cc39d4f79c98e1f3642a0c552f[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 14 16:02:03 2024 +0300
+
+    new
+
+[33mcommit 6c8116da3a432ac5b81080c463dc479e7fc48704[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Tue May 14 11:29:39 2024 +0300
+
+    changes
+
+[33mcommit cfb932ab6f611af4f3b0073309e2e973cb0922b2[m
+Author: Krieglerlawoko <132452940+Krieglerlawoko@users.noreply.github.com>
+Date:   Thu May 2 18:18:10 2024 +0300
+
+    hi
+
+[33mcommit fbcab83cd6a2040e5c74c3b9f45ffb665d2358d9[m
+Merge: 2c06000 0e68bde
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Thu May 2 18:14:59 2024 +0300
+
+    Merge branch 'main' of https://github.com/Krieglerlawoko/HarmonyHub
+
+[33mcommit 2c06000ed560d5b92d8741d805946f375c74b131[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Thu May 2 18:14:39 2024 +0300
+
+    n
+
+[33mcommit 0e68bde7a158a937858270b13ce1c0151a2a1941[m
+Author: Krieglerlawoko <132452940+Krieglerlawoko@users.noreply.github.com>
+Date:   Thu May 2 18:12:32 2024 +0300
+
+    Delete myapp/static/images
+
+[33mcommit 7cc4cb0ac9a98979c6fd16662f561036c5e02f6d[m
+Author: Krieglerlawoko <132452940+Krieglerlawoko@users.noreply.github.com>
+Date:   Thu May 2 18:11:43 2024 +0300
+
+    Create images
+    
+    image file
+
+[33mcommit b871fd9f9f7958ac24abc131f018ee85dd90eaf5[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Thu May 2 18:00:13 2024 +0300
+
+    h
+
+[33mcommit b90ac544823ab1395f36f795da0447801d85b4f7[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Wed May 1 14:16:08 2024 +0300
+
+    new
+
+[33mcommit 11ef73b82a8144aed095432b127d9da7a8359d01[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Wed May 1 13:36:38 2024 +0300
+
+    new
+
+[33mcommit 92c32c549e084dd4bbc9aab1b3a63f431f10a26e[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Wed May 1 11:13:40 2024 +0300
+
+    new
+
+[33mcommit a3616845e3c03f69113d1f53b7f87e09deeb1e3f[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Fri Apr 26 09:39:57 2024 -0700
+
+    new
+
+[33mcommit d05c79b25577dfdf75b3dbe404a0e6d484b42e82[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Fri Apr 26 08:29:18 2024 -0700
+
+    new
+
+[33mcommit ed2a0580af9d0d25a0c15a3aa3da7ea725caff51[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Fri Apr 26 07:47:31 2024 -0700
+
+    new
+
+[33mcommit 0c5e125145ab5f8a9f319a9179706b2ce0f21bd5[m
+Author: Kriegler lawoko <Krieglerlawokojudge@gmail.com>
+Date:   Thu Apr 25 10:45:40 2024 -0700
+
+    new
+
+[33mcommit d17e546a309c8f63eb50f329885e5a902d442f54[m
+Author: Krieglerlawoko <132452940+Krieglerlawoko@users.noreply.github.com>
+Date:   Thu Apr 25 10:33:17 2024 +0300
+
+    Initial commit
