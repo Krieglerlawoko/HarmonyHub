@@ -13,8 +13,7 @@ from flask_migrate import Migrate
 # Initialize the app11
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your-database-file.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://sievrjxxscwcvs:0c6714283c9073f74b792315a9418f939bfc16fa76d226d20898975ee6aa3d81@ec2-44-194-102-142.compute-1.amazonaws.com:5432/d9neel4gp1m6gq'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ckhtvtmdknktaw:807eebc9a47d8003719ee4b29b0f85117dd058ea8e4faee038a0f47ddf53ca70@ec2-54-144-112-84.compute-1.amazonaws.com:5432/de7p1iprr3882t'
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 
 # Initialize extensionss2
@@ -192,15 +191,15 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/upload', methods=['GET', 'POST'])
-# @login_required  # Uncomment this line if using Flask-Login for authentication
+@login_required  # Uncomment this line if using Flask-Login for authentication
 def upload_song():
     if request.method == 'POST':
         title = request.form['title']
         artist = request.form['artist']
         genre = request.form['genre']
-        file = request.files['file']
-        cover_art = request.files['cover_art']
-        
+        file = request.files.get('file')
+        cover_art = request.files.get('cover_art')
+
         if file and cover_art:
             try:
                 new_song = Song(
@@ -213,14 +212,13 @@ def upload_song():
                 db.session.add(new_song)
                 db.session.commit()
                 flash('Song uploaded successfully!', 'success')
+                return redirect(url_for('dashboard'))
             except IntegrityError:
                 db.session.rollback()
                 flash('An error occurred. Please try again.', 'error')
-            return redirect(url_for('dashboard'))
         else:
             flash('File and cover art are required!', 'error')
-            return redirect(request.url)
-    
+
     return render_template('upload.html')
 
 @app.route('/cover_art/<int:song_id>')
