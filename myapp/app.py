@@ -153,7 +153,7 @@ def register():
         return render_template('register.html')
 
 @app.route('/download', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def download_song():
     if request.method == 'POST':
         song = Song.query.get(request.form.get('file_id'))
@@ -191,7 +191,7 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/upload', methods=['GET', 'POST'])
-@login_required  # Uncomment this line if using Flask-Login for authentication
+#@login_required
 def upload_song():
     if request.method == 'POST':
         title = request.form['title']
